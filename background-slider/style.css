@@ -13,7 +13,6 @@ body {
 	justify-content: center;
 	height: 100vh;
 	overflow: hidden;
-	background-image: url('https://images.unsplash.com/photo-1541845157-a6d2d100c931?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2886&q=80');
 	background-position: center center;
 	background-size: cover;
 	transition: 0.4s ease;
@@ -48,7 +47,9 @@ body::before {
 	top: -15vh;
 	left: -15vw;
 	transition: 0.4s ease;
+	z-index: 1;
 }
+
 .slide.active {
 	opacity: 1;
 }
@@ -57,12 +58,12 @@ body::before {
 	position: fixed;
 	background-color: transparent;
 	color: #fff;
-	cursor: pointer;
 	padding: 20px;
 	font-size: 30px;
 	border: 2px solid orange;
 	top: 50%;
 	transform: translateY(-50%);
+	cursor: pointer;
 }
 
 .arrow:focus {
