@@ -31,3 +31,59 @@ body {
 	overflow: hidden;
 	margin: 0;
 }
+
+.toggle {
+	background-color: var(--primary-color);
+	color: var(--secondary-color);
+	border: 0;
+	border-radius: 4px;
+	padding: 8px 12px;
+	position: absolute;
+	top: 100px;
+	cursor: pointer;
+}
+
+.toggle:focus {
+	outline: none;
+}
+
+.clock-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.clock {
+	position: relative;
+	width: 200px;
+	height: 200px;
+	background-color: #f0f0f0;
+}
+
+.needle {
+	background-color: var(--primary-color);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 65px;
+	width: 3px;
+	transform-origin: bottom center;
+}
+
+.needle.hour {
+	transform: translate(-50%, -100%) rotate(0deg);
+}
+
+.needle.minute {
+	height: 100px;
+	transform: translate(-50%, -100%) rotate(0deg);
+}
+.needle.second {
+	height: 100px;
+	transform: translate(-50%, -100%) rotate(0deg);
+	background-color: #e74c3c;
+}
+
+.center {
+}
