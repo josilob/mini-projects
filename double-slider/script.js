@@ -32,6 +32,8 @@ const changeSlide = (direction) => {
 		}
 	}
 
+	// activeSlideIndex * sliderHeight in px is the same as:
+	// activeSlideIndex *  100vh
 	slideLeft.style.transform = `translateY(${
 		activeSlideIndex * sliderHeight
 	}px)`;
