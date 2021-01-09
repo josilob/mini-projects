@@ -7,7 +7,7 @@ const slidesLength = slideRight.querySelectorAll('div').length;
 
 let activeSlideIndex = 0;
 
-//makes picture and slide match, since we move vertical position as many times as the position of the slide in the array
+//matches picture with slide, since these two array move in the opposite directions
 slideLeft.style.top = `-${(slidesLength - 1) * 100}vh`;
 
 upButton.addEventListener('click', () => {
@@ -34,6 +34,7 @@ const changeSlide = (direction) => {
 
 	// activeSlideIndex * sliderHeight in px is the same as:
 	// activeSlideIndex *  100vh
+
 	slideLeft.style.transform = `translateY(${
 		activeSlideIndex * sliderHeight
 	}px)`;
