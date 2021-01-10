@@ -36,12 +36,13 @@ body {
 	box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
 		0 15px 40px rgba(0, 0, 0, 0.1);
 }
-.user-form input:focus {
-	outline: none;
-}
 
 .user-form input::placeholder {
 	color: #bbb;
+}
+
+.user-form input:focus {
+	outline: none;
 }
 
 .card {
@@ -72,7 +73,6 @@ body {
 }
 
 .user-info ul {
-	display: flex;
 	list-style-type: none;
 	display: flex;
 	justify-content: space-between;
@@ -93,8 +93,8 @@ body {
 .repo {
 	text-decoration: none;
 	color: #fff;
-	background-color: #2a2a72;
-	font-size: 12px;
+	background-color: #212a72;
+	font-size: 14px;
 	padding: 4px 8px;
 	margin-right: 8px;
 	margin-bottom: 8px;
