@@ -1,0 +1,47 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: monospace;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: #191e38;
+}
+
+.circle {
+	transform-style: preserve-3d;
+	transform: perspective(1000px) rotateY(360deg) rotateX(15deg);
+}
+
+.circle .char {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: rgb(221, 159, 24);
+	background: linear-gradient(
+		0deg,
+		rgba(221, 159, 24, 1) 0%,
+		rgba(209, 90, 17, 1) 50%,
+		rgba(221, 159, 24, 1) 100%
+	);
+	color: rgb(255, 247, 0);
+	font-size: 4em;
+	padding: 5px 12px;
+	border-top: 8px solid rgba(209, 90, 17, 1);
+	border-bottom: 8px solid rgba(209, 90, 17, 1);
+	transform-style: preserve-3d;
+	transform-origin: center;
+	transform: rotateY(calc(var(--char-index) * 11.6deg)) translateZ(250px);
+	color: #ffffff;
+	text-shadow: 0px -2px 4px #fff, 0px -2px 10px #ff3, 0px -10px 20px #f90,
+		0px -20px 40px #c33, 500px 150px 0 #f9ff00, 300px 150px 10px #f9ff00,
+		150px 600px 0 #f9ff00, 600px 50px 0 #f9ff00, 400px 350px 0 #f9ff00,
+		200px 500px 0 #f9ff00, 500px -150px 0 #f9ff00, 300px -150px 10px #f9ff00,
+		150px -600px 0 #f9ff00, 600px -50px 0 #f9ff00, 400px -350px 0 #f9ff00,
+		200px -500px 0 #f9ff00;
+}
