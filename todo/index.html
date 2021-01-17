@@ -8,12 +8,14 @@
 </head>
 <body>
     <h1>Todos</h1>
-    <form id="form">
-        <input type="text" class="input" id="input" placeholder="Enter your todo" autocomplete="off">
-        <ul class="todos" id="todos">
-        </ul>
-    </form>
-    <small>Left click to toggle completed. <br> Right click to delete todo.</small>
+    <div class="input-field">
+        <small>Left click to toggle completion. <br> Right click to delete todo.</small>
+        <form id="form">
+            <input type="text" class="input" id="input" placeholder="Enter your todo" autocomplete="off">
+            <ul class="todos" id="todos">
+            </ul>
+        </form>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
