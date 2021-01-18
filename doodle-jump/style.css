@@ -14,3 +14,24 @@ body {
 	overflow: hidden;
 	margin: 0;
 }
+
+.game {
+	width: 400px;
+	height: 600px;
+	position: relative;
+	background-color: bisque;
+}
+
+.jumper {
+	width: 60px;
+	height: 85px;
+	background-color: red;
+	position: absolute;
+}
+
+.platform {
+	width: 85px;
+	height: 15px;
+	background-color: green;
+	position: absolute;
+}
