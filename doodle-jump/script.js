@@ -53,6 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
 				platform.bottom -= 4;
 				let visual = platform.visual;
 				visual.style.bottom = platform.bottom + 'px';
+
+				if (platform.bottom < 10) {
+					let firstPlatform = platforms[0].visual;
+					firstPlatform.classList.remove('platform');
+					platforms.shift();
+					let newPlatform = new Platform(600);
+					platforms.push(newPlatform);
+				}
 			});
 		}
 	}
@@ -131,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		isGoingLeft = true;
 		leftTimerId = setInterval(function () {
 			if (jumperLeftSpace > 0) {
-				jumperLeftSpace -= 5;
+				jumperLeftSpace -= 10;
 				jumper.style.left = jumperLeftSpace + 'px';
 			} else moveRight();
 		}, 30);
@@ -145,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		isGoingRight = true;
 		rightTimerId = setInterval(function () {
 			if (jumperLeftSpace <= 340) {
-				jumperLeftSpace += 5;
+				jumperLeftSpace += 10;
 				jumper.style.left = jumperLeftSpace + 'px';
 			} else moveLeft();
 		}, 30);
