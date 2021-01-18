@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	let isGoingRight = false;
 	let leftTimerId;
 	let rightTimerId;
+	let score = 0;
 
 	class Platform {
 		constructor(newPlatformBottom) {
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					let firstPlatform = platforms[0].visual;
 					firstPlatform.classList.remove('platform');
 					platforms.shift();
+					score++;
 					let newPlatform = new Platform(600);
 					platforms.push(newPlatform);
 				}
@@ -74,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			if (jumperBottomSpace > 350) {
 				fall();
 			}
-		}, 30);
+		}, 20);
 	}
 
 	function fall() {
@@ -105,8 +107,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	function gameOver() {
 		console.log('Game Over');
 		isGameOver = true;
+		while (game.firstChild) {
+			game.removeChild(game.firstChild);
+		}
+		game.innerHTML = score;
 		clearInterval(upTimerId);
 		clearInterval(downTimerId);
+		clearInterval(leftTimerId);
+		clearInterval(rightTimerId);
 	}
 
 	//assign functions to keyCodes
@@ -125,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (!isGameOver) {
 			createPlatforms();
 			createJumper();
-			setInterval(movePlatforms, 30);
+			setInterval(movePlatforms, 20);
 			jump();
 			document.addEventListener('keyup', control);
 		}
