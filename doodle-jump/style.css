@@ -12,6 +12,7 @@
 	height: 85px;
 	background-color: red;
 	position: absolute;
+	z-index: 1000000;
 }
 
 .platform {
