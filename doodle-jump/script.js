@@ -2,14 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	const game = document.querySelector('.game');
 	const jumper = document.createElement('div');
 	let isGameOver = false;
-	let speed = 3;
 	let platformCount = 5;
 	let platforms = [];
 	let score = 0;
 	let jumperLeftSpace = 50;
 	let startPoint = 150;
 	let jumperBottomSpace = startPoint;
-	const gravity = 0.9;
 	let upTimerId;
 	let downTimerId;
 	let isJumping = true;
@@ -19,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	let rightTimerId;
 
 	class Platform {
-		constructor(newPlatBottom) {
+		constructor(newPlatformBottom) {
 			this.left = Math.random() * 315;
-			this.bottom = newPlatBottom;
+			this.bottom = newPlatformBottom;
 			this.visual = document.createElement('div');
 
 			const visual = this.visual;
@@ -34,11 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	function createPlatforms() {
 		for (let i = 0; i < platformCount; i++) {
-			let platGap = 600 / platformCount;
-			let newPlatBottom = 100 + i * platGap;
-			let newPlatform = new Platform(newPlatBottom);
+			let platformGap = 600 / platformCount;
+			let newPlatformBottom = 100 + i * platformGap;
+			let newPlatform = new Platform(newPlatformBottom);
 			platforms.push(newPlatform);
-			console.log(platforms);
 		}
 	}
 
@@ -53,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
 					let firstPlatform = platforms[0].visual;
 					firstPlatform.classList.remove('platform');
 					platforms.shift();
-					console.log(platforms);
 					score++;
 					var newPlatform = new Platform(600);
 					platforms.push(newPlatform);
@@ -87,10 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
 					jumperLeftSpace <= platform.left + 85 &&
 					!isJumping
 				) {
-					console.log('tick');
 					startPoint = jumperBottomSpace;
 					jump();
-					console.log('start', startPoint);
 					isJumping = true;
 				}
 			});
@@ -101,12 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		clearInterval(downTimerId);
 		isJumping = true;
 		upTimerId = setInterval(function () {
-			console.log(startPoint);
-			console.log('1', jumperBottomSpace);
-			jumperBottomSpace += 20;
+			jumperBottomSpace += 15;
 			jumper.style.bottom = jumperBottomSpace + 'px';
-			console.log('2', jumperBottomSpace);
-			console.log('s', startPoint);
 			if (jumperBottomSpace > startPoint + 200) {
 				fall();
 				isJumping = false;
@@ -122,7 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		isGoingLeft = true;
 		leftTimerId = setInterval(function () {
 			if (jumperLeftSpace >= 0) {
-				console.log('going left');
 				jumperLeftSpace -= 5;
 				jumper.style.left = jumperLeftSpace + 'px';
 			} else moveRight();
@@ -138,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		rightTimerId = setInterval(function () {
 			//changed to 313 to fit doodle image
 			if (jumperLeftSpace <= 313) {
-				console.log('going right');
 				jumperLeftSpace += 5;
 				jumper.style.left = jumperLeftSpace + 'px';
 			} else moveLeft();
@@ -167,7 +155,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	function gameOver() {
 		isGameOver = true;
 		while (game.firstChild) {
-			console.log('remove');
 			game.removeChild(game.firstChild);
 		}
 		game.innerHTML = score;
