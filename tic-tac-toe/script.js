@@ -119,5 +119,33 @@ function selectWinner() {
 		console.log(playerSign + ' ' + 'is the winner');
 		runBot = false;
 		bot(runBot);
+		setTimeout(() => {
+			// delay result display
+			playBoard.classList.remove('show');
+			resultBox.classList.add('show');
+		}, 700);
+		wonText.innerHTML = `Player <p>${playerSign}</p> won the game!`;
+	} else {
+		if (
+			getID(1) != '' &&
+			getID(2) != '' &&
+			getID(3) != '' &&
+			getID(4) != '' &&
+			getID(5) != '' &&
+			getID(6) != '' &&
+			getID(7) != '' &&
+			getID(8) != '' &&
+			getID(9) != ''
+		) {
+			runBot = false;
+			bot(runBot);
+			setTimeout(() => {
+				// delay result display
+				playBoard.classList.remove('show');
+				resultBox.classList.add('show');
+			}, 700);
+			wonText.textContent = `It's draw!`;
+		}
 	}
 }
+
