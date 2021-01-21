@@ -1,5 +1,3 @@
-//I've tried to explain each JavaScript line with comments....Hope you'll understand
-
 //selecting all required elements
 const selectBox = document.querySelector('.select-box'),
 	selectBtnX = selectBox.querySelector('.options .playerX'),
@@ -12,9 +10,9 @@ const selectBox = document.querySelector('.select-box'),
 	replayBtn = resultBox.querySelector('button');
 
 window.onload = () => {
-	//once window loaded
+	//once window loads
 	for (let i = 0; i < allBox.length; i++) {
-		//add onclick attribute in all available span
+		//add onclick attribute in all available spans
 		allBox[i].setAttribute('onclick', 'clickedBox(this)');
 	}
 };
@@ -86,7 +84,8 @@ function bot(runBot) {
 			}
 			selectWinner();
 		}
-		allBox[randomBox].style.pointerEvents = 'none'; // so we can't click over the field that bot has marked
+		// so we can't click over the field that bot has marked
+		allBox[randomBox].style.pointerEvents = 'none';
 		playBoard.style.pointerEvents = 'auto';
 		playerSign = 'X';
 	}
@@ -105,7 +104,7 @@ function checkIDs(val1, val2, val3, sign) {
 }
 
 function selectWinner() {
-	// if one of the combinations is matches, select winner
+	// if one of the combinations is matched, select winner
 	if (
 		checkIDs(1, 2, 3, playerSign) ||
 		checkIDs(4, 5, 6, playerSign) ||
