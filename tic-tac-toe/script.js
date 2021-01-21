@@ -31,15 +31,20 @@ selectBtnO.onclick = () => {
 
 let playerXIcon = 'fas fa-times';
 let playerOIcon = 'fas fa-circle';
+let playerSign = 'X'; // we guess this
 
 // user's click fn
 function clickedBox(element) {
 	if (players.classList.contains('player')) {
 		element.innerHTML = `<i class="${playerOIcon}"></i>`; //add circle icon tag inside clicked element
+		playerSign = 'O'; // if player chooses O, we will switch the sign
 		players.classList.add('active');
+		//if player selects O than we change
+		element.setAttribute('id', playerSign);
 	} else {
 		element.innerHTML = `<i class="${playerXIcon}"></i>`; // add cross to the same
 		players.classList.add('active');
+		element.setAttribute('id', playerSign);
 	}
 	element.style.pointerEvents = 'none'; // once selected, that box can't be selected again
 	let randomDelayTime = (Math.random() * 1000 + 200).toFixed(); //generate random bot delay
@@ -50,6 +55,8 @@ function clickedBox(element) {
 
 // bot click fn
 function bot() {
+	//first change playerSign, so if user has X, than bot will be O
+	playerSign = 'O';
 	let array = []; // empty array to store inselected boxes in it
 	for (let i = 0; i < allBox.length; i++) {
 		//if there are no span elements
@@ -62,10 +69,15 @@ function bot() {
 	if (array.length > 0) {
 		if (players.classList.contains('player')) {
 			allBox[randomBox].innerHTML = `<i class="${playerXIcon}"></i>`;
-			players.classList.add('active');
+			players.classList.remove('active');
+			//if user is O than the box id value will be X
+			playerSign = 'X';
+			allBox[randomBox].setAttribute('id', playerSign);
 		} else {
 			allBox[randomBox].innerHTML = `<i class="${playerOIcon}"></i>`;
-			players.classList.add('active');
+			players.classList.remove('active');
+			allBox[randomBox].setAttribute('id', playerSign);
 		}
 	}
+	allBox[randomBox].style.pointerEvents = 'none'; // so we can't click over the field that bot has marked
 }
