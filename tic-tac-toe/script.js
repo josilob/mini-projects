@@ -31,7 +31,7 @@ selectBtnO.onclick = () => {
 };
 
 let playerXIcon = 'fas fa-times';
-let playerOIcon = 'fas fa-circle';
+let playerOIcon = 'far fa-circle';
 let playerSign = 'X'; // we guess this
 let runBot = true;
 
@@ -149,3 +149,6 @@ function selectWinner() {
 	}
 }
 
+replayBtn.onclick = () => {
+	window.location.reload(); // reload the page
+};
