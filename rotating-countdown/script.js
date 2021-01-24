@@ -23,7 +23,7 @@ function runAnimation() {
 			if (e.animationName === 'goIn' && idx !== nextToLast) {
 				num.classList.remove('in');
 				num.classList.add('out');
-			} else if (e.animationName === 'goOut' && num.nextElementSibling) {
+			} else if (e.animationName === 'goOut' && num.nextElement Sibling) {
 				num.nextElementSibling.classList.add('in');
 			} else {
 				counter.classList.add('hide');
