@@ -17,7 +17,7 @@ body {
 }
 
 .magic {
-	background-color: #f9ca24;
+	background-color: #248bf9;
 	color: #fff;
 	font-family: 'Poppins', sans-serif;
 	border: 0;
@@ -28,7 +28,7 @@ body {
 	position: fixed;
 	top: 20px;
 	letter-spacing: 1px;
-	box-shadow: 0 3px rgba(249, 202, 36, 0.5);
+	box-shadow: 0 3px rgba(71, 168, 220, 0.5);
 	z-index: 100;
 }
 
@@ -72,7 +72,7 @@ body {
 
 .box::after {
 	content: '';
-	background-color: #f6e58d;
+	background-color: #7ed0ee;
 	position: absolute;
 	top: 8px;
 	right: -15px;
@@ -83,7 +83,7 @@ body {
 
 .box::before {
 	content: '';
-	background-color: #f9ca24;
+	background-color: #248bf9;
 	position: absolute;
 	bottom: -15px;
 	left: 8px;
