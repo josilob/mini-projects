@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Search = () => {
-	const [term, setTerm] = useState('');
+	const [term, setTerm] = useState('code');
 	const [results, setResults] = useState([]);
 
 	useEffect(() => {
@@ -20,7 +20,20 @@ const Search = () => {
 			setResults(data.query.search);
 		};
 
-		if (term) search();
+		if (term && !results.length) {
+			search();
+		} else {
+			const timeoutId = setTimeout(() => {
+				if (term) search();
+			}, 500);
+			// cleanup portion of useEffect, which resets timeout as long as we type since [term] keeps changing
+			// and useEffect keeps rerunning
+			return () => {
+				clearTimeout(timeoutId);
+			};
+		}
+
+		// throttle API search (delayed request)
 	}, [term]);
 
 	const renderedResults = results.map((result) => {
@@ -30,7 +43,8 @@ const Search = () => {
 					<a
 						href={`https://en.wikipedia.org?curid=${result.pageid}`}
 						className='ui button'
-						target='_blank'>
+						target='_blank'
+						rel='noreferrer'>
 						Go
 					</a>
 				</div>

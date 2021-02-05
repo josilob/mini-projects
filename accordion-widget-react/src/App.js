@@ -17,7 +17,7 @@ const items = [
 	},
 ];
 
-export default () => {
+const App = () => {
 	return (
 		<div>
 			<Accordion items={items} />
@@ -25,3 +25,4 @@ export default () => {
 		</div>
 	);
 };
+export default App;
