@@ -28,7 +28,9 @@ const Search = () => {
 			<div className='item' key={result.pageid}>
 				<div className='content'>
 					<div className='header'>{result.title}</div>
-					{result.snippet}
+					<span dangerouslySetInnerHTML={{ __html: result.snippet }}></span>
+					{/* other way to replace inserted spans in our results was through replace method */}
+					{/* dangerouslySetInnerHTML takes a string and renders it as HTML */}
 				</div>
 			</div>
 		);
