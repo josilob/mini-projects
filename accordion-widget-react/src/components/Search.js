@@ -3,10 +3,11 @@ import axios from 'axios';
 
 const Search = () => {
 	const [term, setTerm] = useState('');
+	const [results, setResults] = useState([]);
 
 	useEffect(() => {
-		(async () => {
-			await axios.get('https://en.wikipedia.org/w/api.php?', {
+		const search = async () => {
+			const { data } = await axios.get('https://en.wikipedia.org/w/api.php', {
 				params: {
 					action: 'query',
 					list: 'search',
@@ -15,24 +16,37 @@ const Search = () => {
 					srsearch: term,
 				},
 			});
-		})();
-		// or we could have gone with:
-		// const search = async()=>{await axios.get('asdasd')}
+
+			setResults(data.query.search);
+		};
+
+		if (term) search();
 	}, [term]);
 
-	console.log('I run with each render');
+	const renderedResults = results.map((result) => {
+		return (
+			<div className='item' key={result.pageid}>
+				<div className='content'>
+					<div className='header'>{result.title}</div>
+					{result.snippet}
+				</div>
+			</div>
+		);
+	});
+
 	return (
 		<div>
 			<div className='ui form'>
 				<div className='field'>
-					<label>Enter Search term</label>
+					<label>Enter Search Term</label>
 					<input
-						className='input'
 						value={term}
 						onChange={(e) => setTerm(e.target.value)}
+						className='input'
 					/>
 				</div>
 			</div>
+			<div className='ui celled list'>{renderedResults}</div>
 		</div>
 	);
 };
