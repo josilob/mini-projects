@@ -3,8 +3,23 @@ import axios from 'axios';
 
 const Search = () => {
 	const [term, setTerm] = useState('code');
+	const [debouncedTerm, setDebouncedTerm] = useState('code');
 	const [results, setResults] = useState([]);
 
+	// runs every time we type in the input and change its state(vlaue)
+	// any time this useEffect changes, we are going to queue up a change to debouncedTerm that executes after 1 sec
+	useEffect(() => {
+		const timerId = setTimeout(() => {
+			if (term) setDebouncedTerm(term);
+		}, 1000);
+
+		return () => {
+			clearTimeout(timerId);
+		};
+	}, [term]);
+
+	// whenever debouncedTerm updates above in 1st useEffect, we will run this 2nd one that runs the actual SEARCH
+	// this helps us solve warnings and errors with dependency array when they are combined in one
 	useEffect(() => {
 		const search = async () => {
 			const { data } = await axios.get('https://en.wikipedia.org/w/api.php', {
@@ -13,28 +28,41 @@ const Search = () => {
 					list: 'search',
 					origin: '*',
 					format: 'json',
-					srsearch: term,
+					srsearch: debouncedTerm,
 				},
 			});
 
-			setResults(data.query.search);
+			if (data.query) setResults(data.query.search); // inside axios.get
 		};
+		search();
+	}, [debouncedTerm]);
 
-		if (term && !results.length) {
-			search();
-		} else {
-			const timeoutId = setTimeout(() => {
-				if (term) search();
-			}, 500);
-			// cleanup portion of useEffect, which resets timeout as long as we type since [term] keeps changing
-			// and useEffect keeps rerunning
-			return () => {
-				clearTimeout(timeoutId);
-			};
-		}
-
-		// throttle API search (delayed request)
-	}, [term]);
+	// useEffect(() => {
+	// const search = async () => {
+	// 	const { data } = await axios.get('https://en.wikipedia.org/w/api.php', {
+	// 		params: {
+	// 			action: 'query',
+	// 			list: 'search',
+	// 			origin: '*',
+	// 			format: 'json',
+	// 			srsearch: debouncedTerm,
+	// 		},
+	// 	});
+	// 	setResults(data.query.search);
+	// 	if (term && !results.length) {
+	// 		search();
+	// 	} else {
+	// 		const timeoutId = setTimeout(() => {
+	// 			if (term) search();
+	// 		}, 500);
+	// 		// cleanup portion of useEffect, which resets timeout as long as we type since [term] keeps changing
+	// 		// and useEffect keeps rerunning
+	// 		return () => {
+	// 			clearTimeout(timeoutId);
+	// 		};
+	// 	}
+	// 	// throttle API search (delayed request)
+	// }, [term, results.length]);
 
 	const renderedResults = results.map((result) => {
 		return (
