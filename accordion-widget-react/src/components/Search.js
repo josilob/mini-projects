@@ -18,8 +18,8 @@ const Search = () => {
 		};
 	}, [term]);
 
-	// whenever debouncedTerm updates above in 1st useEffect, we will run this 2nd one that runs the actual SEARCH
-	// this helps us solve warnings and errors with dependency array when they are combined in one
+	// whenever debouncedTerm updates above in 1st useEffect, the 2nd one with the actual SEARCH will run
+	// this helps solve warnings and errors with dependency array when they are combined in one
 	useEffect(() => {
 		const search = async () => {
 			const { data } = await axios.get('https://en.wikipedia.org/w/api.php', {
@@ -32,7 +32,7 @@ const Search = () => {
 				},
 			});
 
-			if (data.query) setResults(data.query.search); // inside axios.get
+			if (data.query) setResults(data.query.search);
 		};
 		search();
 	}, [debouncedTerm]);
