@@ -1,7 +1,22 @@
+// since we are not utilizing JSX syntax we do not need to import React on top
+import { useEffect, useState } from 'react';
+
 const Route = ({ path, children }) => {
-	return window.location.pathname === path ? children : null;
+	// invoke piece of state with sole purpose to force rerender
+	const [currentPath, setCurrentPath] = useState(window.location.pathname);
+	useEffect(() => {
+		const onLocationChange = () => {
+			setCurrentPath(window.location.pathname);
+		};
+
+		window.addEventListener('popstate', onLocationChange);
+
+		// clean event listener when we change location
+		return () => {
+			window.removeEventListener('popstate', onLocationChange);
+		};
+	}, []);
+	return currentPath === path ? children : null;
 };
 
 export default Route;
-
-// since we are not utilizing JSX syntax we do not need to import React on top
