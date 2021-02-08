@@ -1,4 +1,4 @@
-// since we are not utilizing JSX syntax we do not need to import React on top
+// since JSX syntax is not being used there's need to import React on top
 import { useEffect, useState } from 'react';
 
 const Route = ({ path, children }) => {
