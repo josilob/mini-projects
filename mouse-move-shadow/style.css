@@ -1,16 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-* {
-	box-sizing: border-box;
+html {
+	color: black;
+	font-family: sans-serif;
 }
 
 body {
-	font-family: 'Roboto', sans-serif;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-	overflow: hidden;
 	margin: 0;
+}
+
+.hero {
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: black;
+}
+
+h1 {
+	text-shadow: 10px 10px 0 rgba(0, 0, 0, 1);
+	font-size: 100px;
 }
