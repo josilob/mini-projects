@@ -9,7 +9,7 @@ body {
 	margin: 0;
 }
 
-.hero {
+.box {
 	min-height: 100vh;
 	display: flex;
 	justify-content: center;
