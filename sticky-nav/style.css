@@ -4,6 +4,7 @@ html {
   font-family: 'helvetica neue';
   font-size: 20px;
   font-weight: 200;
+  scroll-behavior: smooth;
 }
 
 body {
