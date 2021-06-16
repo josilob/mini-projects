@@ -32,6 +32,7 @@ body {
 	background: #232323;
 	border-radius: 20px;
 	transform-style: preserve-3d;
+	z-index: 15;
 }
 
 .container .box::before {
@@ -136,6 +137,11 @@ body {
 
 .container .box:hover .product {
 	transform: translate3d(-50%, -50%, 100px) rotate(-15deg);
+}
+
+.container .box:hover .buy {
+	transform: translate3d(-50%, -5px, 100px);
+	filter: drop-shadow(0 0 0.25rem rgb(226, 217, 219));
 }
 
 .container .box:nth-child(1) .circle,
